@@ -127,5 +127,5 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Grazie per averci contattato! Ti risponeremo al più presto.");
             contactForm.reset();
         });
-    }
+    } 
 });
