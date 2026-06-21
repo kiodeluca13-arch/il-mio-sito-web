@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Astronomia Avanzata</title>
+    <style>
+    body { background: #020208 radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent) repeat; background-size: 300px 300px; color: #fff; margin: 0; font-family: sans-serif; overflow-x: hidden; }
+    .spazio-sfondo-fisso { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+    .stella-cadente-nuova { position: absolute; top: -100px; width: 4px; height: 4px; background: #fff; border-radius: 50%; animation: caduta 4s linear infinite; box-shadow: 0 0 8px #fff; }
+    .stella-cadente-nuova::after { content: ''; position: absolute; width: 80px; height: 2px; background: linear-gradient(to left, #00e5ff, transparent); transform: rotate(135deg); transform-origin: top left; }
+    .stella-cadente-nuova:nth-child(1) { left: 5%; animation-duration: 3.5s; } .stella-cadente-nuova:nth-child(2) { left: 45%; animation-delay: 2s; animation-duration: 5s; }
+    @keyframes caduta { 0% { transform: translate(0,0); opacity:0; } 10% { opacity:1; } 100% { transform: translate(80vh,80vh); opacity:0; } }
+    .pianeta-sfondo { position: absolute; border-radius: 50%; opacity: 0.25; animation: ruota 25s linear infinite; background-size: 200% 100%; }
+    .marte-nuovo { top: 20%; right: 8%; width: 55px; height: 55px; background: radial-gradient(circle at 30% 30%, #ff4d4d, #990000, #ff4d4d); }
+    .nettuno-nuovo { top: 75%; left: 5%; width: 75px; height: 75px; background: radial-gradient(circle at 30% 30%, #4da6ff, #003366, #4da6ff); animation-duration: 40s; }
+    @keyframes ruota { 0% { transform: rotate(0deg); background-position: 0% 50%; } 100% { transform: rotate(360deg); background-position: 100% 50%; } }
+    section, .box-gadget-centrato { background: rgba(255,255,255,0.04); padding: 20px; border-radius: 12px; max-width: 550px; margin: 20px auto; border: 1px solid #1b4965; text-align: center; backdrop-filter: blur(5px); box-sizing: border-box; }
+    h1, h2, h3 { color: #00e5ff; } input, button { width: 85%; padding: 10px; margin: 5px; border-radius: 5px; border: none; background: #0d1b2a; color: #fff; box-sizing: border-box; }
+    button { background: #00e5ff; color: #000; font-weight: bold; cursor: pointer; }
+    #preloader { position: fixed; top:0; left:0; width:100%; height:100%; background:#020208; z-index:9999; display:flex; justify-content:center; align-items:center; transition: opacity 0.4s ease; pointer-events: none; }
+    .solar-system { position: relative; width: 160px; height: 160px; } .sun { position: absolute; top: 65px; left: 65px; width: 30px; height: 30px; background: #ffcc00; border-radius: 50%; box-shadow: 0 0 20px #ff9900; }
+    .orbit { position: absolute; border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 50%; animation: spin linear infinite; }
+    .orbit-1 { top: 45px; left: 45px; width: 70px; height: 70px; animation-duration: 3s; } .orbit-2 { top: 25px; left: 25px; width: 110px; height: 110px; animation-duration: 5s; } .orbit-3 { top: 5px; left: 5px; width: 150px; height: 150px; animation-duration: 8s; }
+    .planet { position: absolute; top: 0; left: 50%; width: 10px; height: 10px; border-radius: 50%; transform: translateX(-50%); }
+    .p1 { background: #ff4d4d; } .p2 { background: #00e5ff; } .p3 { background: #ffcc00; } @keyframes spin { 100% { transform: rotate(360deg); } }
+    #chat-box { max-height: 250px; overflow-y: auto; background: rgba(0,0,0,0.5); border-radius: 8px; padding: 10px; text-align: left; margin: 10px auto; width: 90%; border: 1px solid rgba(255,255,255,0.1); }
+    .r-post { border-left: 2px solid #00e5ff; margin-bottom: 10px; background: rgba(255,255,255,0.02); padding: 8px; border-radius: 0 6px 6px 0; }
+    .r-meta { font-size: 11px; color: #888; } .r-auth { color: #ffcc00; font-weight: bold; } .r-txt { font-size: 13px; margin: 3px 0; word-break: break-word; }
+    .r-act { display: flex; align-items: center; gap: 10px; margin-top: 4px; } .r-voti { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: bold; background: rgba(255,255,255,0.05); padding: 1px 6px; border-radius: 12px; }
+    .f-voto { cursor: pointer; user-select: none; } .f-voto:hover { color: #00e5ff; } .b-risp { background: transparent; color: #00e5ff; padding: 0; font-size: 11px; border: none; width: auto; margin: 0; cursor: pointer; text-decoration: underline; }
+    .r-comm-list { margin-left: 12px; border-left: 1px dashed rgba(255,255,255,0.2); padding-left: 6px; margin-top: 4px; } .r-comm { font-size: 12px; background: rgba(255,255,255,0.01); padding: 4px; margin-bottom: 2px; border-radius: 4px; }
+    .reddit-header { display: flex; align-items: center; justify-content: center; gap: 15px; }
+    .logo-png { width: 150px; height: auto; object-fit: contain; }
+    </style>
+</head>
+<body>
+<div id="preloader"><div class="solar-system"><div class="sun"></div><div class="orbit orbit-1"><div class="planet p1"></div></div><div class="orbit orbit-2"><div class="planet p2"></div></div><div class="orbit orbit-3"><div class="planet p3"></div></div></div></div>
+<div class="spazio-sfondo-fisso"><div class="stella-cadente-nuova"></div><div class="stella-cadente-nuova"></div><div class="pianeta-sfondo marte-nuovo"></div><div class="pianeta-sfondo nettuno-nuovo"></div></div>
+<header style="text-align:center; padding: 10px;"><div class="reddit-header"><img src="logo.png" alt="Logo" class="logo-png"><h1>Astronomia Avanzata</h1></div><p style="margin:5px 0 0 0;">L'universo alla portata di tutti</p></header>
+<section id="chi-siamo"><h2>Chi siamo</h2><p>Rendiamo l'astronomia accessibile con approfondimenti scientifici dedicati al cosmo.</p><h3 class="counter" data-target="10000">0</h3><p>Appassionati nella Community</p></section>
+<section style="border-color: #00e5ff;"><h3>✨ La Curiosità del Giorno</h3><p id="testoCuriosita" style="font-size: 14px; line-height: 1.5; margin: 0;"></p></section>
+<div class="box-gadget-centrato" style="border-color:#ffcc00;"><div class="reddit-header"><img src="logo.png" alt="Logo r/" class="logo-png" style="width:45px;"><h3>r/Astronomia_Community</h3></div><div id="chat-box"></div>
+    <div id="ind-risp" style="display:none; font-size:12px; color:#00e5ff; text-align:left; width:90%; margin:5px auto">Risposta a: <span id="sub-target"></span> <button onclick="X()" style="width:auto; padding:2px 6px; background:#ff4d4d; font-size:10px; margin-left:10px">Annulla</button></div>
+    <input type="text" id="c-n" placeholder="u/Nome" style="width:30%; display:inline-block; margin-right:2%"><input type="text" id="c-t" placeholder="Nuovo post o rispondi..." style="width:56%; display:inline-block;"><button onclick="I()" style="width:88%; margin-top:5px">Pubblica</button>
+</div>
+<div class="box-gadget-centrato"><h3>Quanto pesi nel Sistema Solare? 🚀</h3><input type="number" id="pT" placeholder="Peso in kg"><button onclick="cP()">Calcola</button><div id="rS" style="margin-top:10px; text-align:left; line-height:1.5"></div></div>
+<section id="scoperte-cosmiche"><h2>I Grandi Misteri del Cosmo</h2><p><b>🌌 Espansione:</b> L'universo si espande sempre più velocemente grazie all'Energia Oscura.</p><p><b>🔮 Materia Oscura:</b> Una forza invisibile che tieni unite le galassie e occupa il 27% del cosmo.</p><p><b>💨 Nebulose:</b> Spettacolari nubi di polvere e gas che fanno da culla per la nascita di nuove stelle.</p></section>
+<div class="box-gadget-centrato" onclick="NC()" style="cursor:pointer; border-color:#4da6ff"><p id="tC" style="font-style:italic; margin:0">"Siamo fatti di materia stellare che brucia." – M. Hack</p></div>
+<section id="nasa-apod"><h2>Foto del Giorno NASA</h2><div><img src="https://unsplash.com" alt="Spazio" style="max-width:100%; border-radius:8px;"><h3 style="font-size:14px; margin-top:10px;">I Pilastri della Creazione - Nebulosa Aquila</h3></div></section>
+<div class="box-gadget-centrato"><h5>Tempo della Sonda Voyager 1 nello Spazio:</h5><p id="cV" style="font-family:monospace; font-weight:bold"></p></div>
+<script>
+setTimeout(() => {
+    const p = document.getElementById('preloader');
+    if (p) { p.style.opacity = '0'; setTimeout(() => p.style.display = 'none', 400); }
+}, 1000);
+let pId = 2, sId = null; 
+const db = [{ id: 1, autore: "u/Astrogirl_99", testo: "Qualcuno sa la distanza della nebulosa di Orione?", voti: 42, commenti: [{ autore: "u/CosmoNerd", testo: "Circa 1344 anni luce!" }] }];
+function R() {
+    const b = document.getElementById('chat-box'); if(!b) return; b.innerHTML = "";
+    db.forEach(p => {
+        let c = p.commenti.map(x => `<div class="r-comm"><div class="r-meta"><span class="r-auth">${x.autore}</span></div><div class="r-txt">${x.testo}</div></div>`).join('');
+        b.innerHTML += `<div class="r-post"><div class="r-meta">Postato da <span class="r-auth">${p.autore}</span></div><div class="r-txt">${p.testo}</div><div class="r-act"><div class="r-voti"><span class="f-voto" onclick="V(${p.id},1)">▲</span><span id="pt-${p.id}">${p.voti}</span><span class="f-voto" onclick="V(${p.id},-1)">▼</span></div><button class="b-risp" onclick="S(${p.id},'${p.autore}')">Commenta</button></div><div class="r-comm-list">${p.commenti.length ? '<b style="font-size:10px;color:#00e5ff">Commenti</b>':''}${c}</div></div>`;
+    }); b.scrollTop = b.scrollHeight;
+}
+function I() {
+    let n = document.getElementById('c-n').value.trim() || "u/Anonimo", t = document.getElementById('c-t').value.trim(); if (!t) return; if (!n.startsWith("u/")) n = "u/" + n;
+    if (sId !== null) { db.find(x => x.id === sId)?.commenti.push({ autore: n, testo: t }); X(); } else { db.push({ id: pId++, autore: n, testo: t, voti: 1, commenti: [] }); }
+    document.getElementById('c-t').value = ""; R();
+}
+Usa il codice con cautela.function S(id, a) { sId = id; document.getElementById('sub-target').innerText = a; document.getElementById('ind-risp').style.display = 'block'; document.getElementById('c-t').focus(); }function X() { sId = null; document.getElementById('ind-risp').style.display = 'none'; }function V(id, v) { const p = db.find(x => x.id === id); if(p) { p.voti += v; document.getElementById(pt-${id}).innerText = p.voti; } }R();const f = ['"Siamo fatti di materia stellare." – M. Hack', '"Guardate le stelle." – S. Hawking', '"L'universo non ha fretta." – Lao Tzu', '"Il cosmo è tutto ciò che è." – C. Sagan', '"Due cose sono infinite: l'universo e la stupidità." – Einstein', '"Se siamo soli, sarebbe un gran spreco di spazio." – C. Sagan', '"La Terra è solo un minuscolo granello di polvere." – C. Sagan', '"Ognuno di noi è una galassia." – Anonimo'];function NC() { document.getElementById('tC').innerText = f[Math.floor(Math.random() * f.length)]; }const curiositaMondo = ["Un giorno su Venere dura più di un intero anno su Venere a causa della sua rotazione lentissima.","Nello spazio c'è una gigantesca nube di alcol fluttuante nella nebulosa Sagittarius B2.","Un solo cucchiaino da tè di materia di una stella di neutroni peserebbe circa 6 miliardi di tonnellate.","La luce che vediamo oggi dalle stelle è partita migliaia o milioni di anni fa: guardiamo il passato.","Su Nettuno e Urano l'altissima pressione atmosferica genera piogge di veri e propri diamanti.","La galassia di Andromeda si fonderà con la Via Lattea tra circa 4 miliardi di anni."];function impostaCuriositaGiorno() { const el = document.getElementById('testoCuriosita'); if(el) el.innerText = curiositaMondo[new Date().getDate() % curiositaMondo.length]; }impostaCuriositaGiorno();function cP() {let p = parseFloat(document.getElementById('pT').value); if (!p || p <= 0) return;document.getElementById('rS').innerHTML = 🌕 <b>Luna:</b> ${(p * 0.166).toFixed(1)} kg | 🪐 <b>Marte:</b> ${(p * 0.379).toFixed(1)} kg<br>⚡ <b>Giove:</b> ${(p * 2.528).toFixed(1)} kg | 🪐 <b>Saturno:</b> ${(p * 1.065).toFixed(1)} kg;}setInterval(() => { const el = document.getElementById('cV'); if(el) el.innerText = ((new Date().getTime() - new Date("September 5, 1977").getTime()) / 31557600000).toFixed(8) + " anni"; }, 100);const cn = document.querySelector('.counter'); if(cn) { let tg = +cn.getAttribute('data-target'), cur = 0; let it = setInterval(() => { if(cur < tg) { cur += 250; cn.innerText = cur; } else { cn.innerText = tg; clearInterval(it); } }, 20); }
