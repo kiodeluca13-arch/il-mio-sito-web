@@ -4,54 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astronomia Avanzata | L'universo alla portata di tutti</title>
-       <style>
-    /* Sfondo nero profondo + costellazione di stelle fisse */
-    body {
-        background-color: #03030c !important;
-        background-image: 
-             260px, #ffffff, rgba(0,0,0,0));
-        background-size: 350px 350px;
-        color: #ffffff !important;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        position: relative;
-    }
-
-    /* Effetto scia luminosa per le stelle cadenti */
-    .spazio-stelle-cadenti {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-    }
-    .
-       </style>
-              
     
-    
-     
-</head>
-          <style>
-            /* 1. Prima c'è lo stile del body (sfondo nero e stelle fisse) */
-    body { ... }
-
-    /* 2. Poi lo stile del contenitore bloccato */
-    .spazio-sfondo { ... }
-
-    /* 3. Poi lo stile e l'animazione delle stelle cadenti */
-    .stella-cadente { ... }
-
-    /* 4. E infine lo stile e la rotazione di .pianeta-sfondo, marte e nettuno */
-    .pianeta-sfondo { ... }
-    .marte { ... }
-    .nettuno { ... }
-</style>
-    
-    /* Sfondo nero profondo + tantissime stelle fisse */
+    <style>
+    /* Sfondo nero profondo + stelle fisse */
     body {
         background-color: #020208 !important;
         background-image: 
@@ -74,7 +29,7 @@
         position: relative;
     }
 
-    /* Contenitore bloccato sullo sfondo per pianeti e meteore */
+    /* Contenitore bloccato sullo sfondo */
     .spazio-sfondo {
         position: fixed;
         top: 0;
@@ -85,7 +40,7 @@
         z-index: -1;
     }
 
-    /* LE STELLE CADENTI: cadono verso il basso-destra */
+    /* Stelle cadenti */
     .stella-cadente {
         position: absolute;
         top: -60px;
@@ -105,7 +60,7 @@
         100% { transform: translateY(100vh) translateX(100vh) rotate(45deg); opacity: 0; }
     }
 
-    /* I PIANETI: sfumati sullo sfondo con rotazione continua */
+    /* Pianeti rotanti */
     .pianeta-sfondo {
         position: absolute;
         border-radius: 50%;
@@ -129,27 +84,27 @@
         background: radial-gradient(circle at 30% 30%, #4da6ff, #003366, #4da6ff);
         background-size: 200% 100%;
         box-shadow: inset -12px -12px 30px rgba(0,0,0,0.9), 0 0 15px rgba(77,166,255,0.2);
-        animation-duration: 40s; /* Nettuno gira più lentamente */
+        animation-duration: 40s;
     }
 
     @keyframes ruotaPianeta {
         0% { transform: rotate(0deg); background-position: 0% 50%; }
         100% { transform: rotate(360deg); background-position: 100% 50%; }
     }
-          </style>
-    
+    </style>
+</head>
 <body>
-      <!-- Elementi accoppiati dello spazio profondo -->
+
+<!-- Elementi dello spazio profondo -->
 <div class="spazio-sfondo">
-    <!-- Stelle Cadenti -->
     <div class="stella-cadente"></div>
     <div class="stella-cadente"></div>
     <div class="stella-cadente"></div>
-    
-    <!-- Pianeti Rotanti -->
     <div class="pianeta-sfondo marte"></div>
     <div class="pianeta-sfondo nettuno"></div>
 </div>
+
+<!-- Subito sotto continuerà il tuo logo e il resto del sito vecchio -->
     
  
   <img src="logo-canale.png" alt="Logo del Canale" style="max-width: 150px; height: auto; display: block; margin: 20px auto;">
