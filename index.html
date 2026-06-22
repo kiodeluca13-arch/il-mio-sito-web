@@ -16,12 +16,6 @@
     section, .box-gadget-centrato { background: rgba(255,255,255,0.04); padding: 20px; border-radius: 12px; max-width: 550px; margin: 20px auto; border: 1px solid #1b4965; text-align: center; backdrop-filter: blur(5px); box-sizing: border-box; }
     h1, h2, h3 { color: #00e5ff; } input, button { width: 85%; padding: 10px; margin: 5px; border-radius: 5px; border: none; background: #0d1b2a; color: #fff; box-sizing: border-box; }
     button { background: #00e5ff; color: #000; font-weight: bold; cursor: pointer; }
-    #preloader { position: fixed; top:0; left:0; width:100%; height:100%; background:#020208; z-index:9999; display:flex; justify-content:center; align-items:center; transition: opacity 0.4s ease; }
-    .solar-system { position: relative; width: 160px; height: 160px; } .sun { position: absolute; top: 65px; left: 65px; width: 30px; height: 30px; background: #ffcc00; border-radius: 50%; box-shadow: 0 0 20px #ff9900; }
-    .orbit { position: absolute; border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 50%; animation: spin linear infinite; }
-    .orbit-1 { top: 45px; left: 45px; width: 70px; height: 70px; animation-duration: 3s; } .orbit-2 { top: 25px; left: 25px; width: 110px; height: 110px; animation-duration: 5s; } .orbit-3 { top: 5px; left: 5px; width: 150px; height: 150px; animation-duration: 8s; }
-    .planet { position: absolute; top: 0; left: 50%; width: 10px; height: 10px; border-radius: 50%; transform: translateX(-50%); }
-    .p1 { background: #ff4d4d; } .p2 { background: #00e5ff; } .p3 { background: #ffcc00; } @keyframes spin { 100% { transform: rotate(360deg); } }
     #chat-box { max-height: 250px; overflow-y: auto; background: rgba(0,0,0,0.5); border-radius: 8px; padding: 10px; text-align: left; margin: 10px auto; width: 90%; border: 1px solid rgba(255,255,255,0.1); }
     .r-post { border-left: 2px solid #00e5ff; margin-bottom: 10px; background: rgba(255,255,255,0.02); padding: 8px; border-radius: 0 6px 6px 0; }
     .r-meta { font-size: 11px; color: #888; } .r-auth { color: #ffcc00; font-weight: bold; } .r-txt { font-size: 13px; margin: 3px 0; word-break: break-word; }
@@ -33,7 +27,6 @@
     </style>
 </head>
 <body>
-<div id="preloader"><div class="solar-system"><div class="sun"></div><div class="orbit orbit-1"><div class="planet p1"></div></div><div class="orbit orbit-2"><div class="planet p2"></div></div><div class="orbit orbit-3"><div class="planet p3"></div></div></div></div>
 <div class="spazio-sfondo-fisso"><div class="stella-cadente-nuova"></div><div class="stella-cadente-nuova"></div><div class="pianeta-sfondo marte-nuovo"></div><div class="pianeta-sfondo nettuno-nuovo"></div></div>
 <header style="text-align:center; padding: 15px 10px;"><div class="reddit-header"><img src="logo.png" alt="Logo" class="logo-png"><h1 style="margin: 5px 0 0 0;">Astronomia Avanzata</h1></div><p style="margin:5px 0 0 0;">L'universo alla portata di tutti</p></header>
 <section id="chi-siamo"><h2>Chi siamo</h2><p>Rendiamo l'astronomia accessibile con approfondimenti scientifici dedicati al cosmo.</p><h3 class="counter" data-target="10000">0</h3><p>Appassionati nella Community</p></section>
@@ -48,15 +41,6 @@
 <section id="nasa-apod"><h2>Foto del Giorno NASA</h2><div><img src="https://unsplash.com" alt="Spazio" style="max-width:100%; border-radius:8px;"><h3 style="font-size:14px; margin-top:10px;">I Pilastri della Creazione - Nebulosa Aquila</h3></div></section>
 <div class="box-gadget-centrato"><h5>Tempo della Sonda Voyager 1 nello Spazio:</h5><p id="cV" style="font-family:monospace; font-weight:bold"></p></div>
 <script>
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        var p = document.getElementById('preloader');
-        if (p) {
-            p.style.opacity = '0';
-            setTimeout(function() { p.style.display = 'none'; }, 400);
-        }
-    }, 1000);
-});
 let pId = 2, sId = null; const db = [{ id: 1, autore: "u/Astrogirl_99", testo: "Qualcuno sa la distanza della nebulosa di Orione?", voti: 42, commenti: [{ autore: "u/CosmoNerd", testo: "Circa 1344 anni luce!" }] }];
 function R() {
     const b = document.getElementById('chat-box'); if(!b) return; b.innerHTML = "";
@@ -67,6 +51,19 @@ function R() {
 }
 function I() {
     let n = document.getElementById('c-n').value.trim() || "u/Anonimo", t = document.getElementById('c-t').value.trim(); if (!t) return; if (!n.startsWith("u/")) n = "u/" + n;
-  if (sId !== null) { db.find(x => x.id === sId)?.commenti.push({ autore: n, testo: t }); X(); } else { db.push({ id: pId++, autore: n, testo: t, voti: 1, commenti: [] }); }document.getElementById('c-t').value = ""; R();}function S(id, a) { sId = id; document.getElementById('sub-target').innerText = a;
-                                                                                                                                                                                                                                                document.getElementById('ind-risp').style.display = 'block'; document.getElementById('c-t').focus(); }
-  function X() { sId = null; document.getElementById('ind-risp').style.display = 'none'; }function V(id, v) { const p = db.find(x => x.id === id); if(p) { p.voti += v; document.getElementById(pt-${id}).innerText = p.voti; } }R();const f = ['"Siamo fatti di materia stellare." – M. Hack', '"Guardate le stelle." – S. Hawking', '"L'universo non ha fretta." – Lao Tzu', '"Il cosmo è tutto ciò che è." – C. Sagan', '"Due cose sono infinite: l'universo e la stupidità." – Einstein', '"Se siamo soli, sarebbe un gran spreco di spazio." – C. Sagan', '"La Terra è solo un minuscolo granello di polvere." – C. Sagan', '"Ognuno di noi è una galassia." – Anonimo'];function NC() { document.getElementById('tC').innerText = f[Math.floor(Math.random() * f.length)]; }const curiositaMondo = ["Un giorno su Venere dura più di un intero anno su Venere a causa della sua rotazione lentissima.","Nello spazio c'è una gigantesca nube di alcol fluttuante nella nebulosa Sagittarius B2.","Un solo cucchiaino da tè di materia di una stella di neutroni peserebbe circa 6 miliardi di tonnellate.","La luce che vediamo oggi dalle stelle è partita migliaia o milioni di anni fa: guardiamo il passato.","Su Nettuno e Urano l'altissima pressione atmosferica genera piogge di veri e propri diamanti.","La galassia di Andromeda si fonderà con la Via Lattea tra circa 4 miliardi di anni."];function impostaCuriositaGiorno() { const el = document.getElementById('testoCuriosita'); if(el) el.innerText = curiositaMondo[new Date().getDate() % curiositaMondo.length]; }impostaCuriositaGiorno();function cP() {let p = parseFloat(document.getElementById('pT').value); if (!p || p <= 0) return;document.getElementById('rS').innerHTML = 🌕 <b>Luna:</b> ${(p * 0.166).toFixed(1)} kg | 🪐 <b>Marte:</b> ${(p * 0.379).toFixed(1)} kg<br>⚡ <b>Giove:</b> ${(p * 2.528).toFixed(1)} kg | 🪐 <b>Saturno:</b> ${(p * 1.065).toFixed(1)} kg;}setInterval(() => { const el = document.getElementById('cV'); if(el) el.innerText = ((new Date().getTime() - new Date("September 5, 1977").getTime()) / 31557600000).toFixed(8) + " anni"; }, 100);const cn = document.querySelector('.counter'); if(cn) { let tg = +cn.getAttribute('data-target'), cur = 0; let it = setInterval(() => { if(cur < tg) { cur += 250; cn.innerText = cur; } else { cn.innerText = tg; clearInterval(it); } }, 20); }
+    if (sId !== null) { db.find(x => x.id === sId)?.commenti.push({ autore: n, testo: t }); X(); } else { db.push({ id: pId++, autore: n, testo: t, voti: 1, commenti: [] }); }
+    document.getElementById('c-t').value = ""; R();
+}
+function S(id, a) { sId = id; document.getElementById('sub-target').innerText = a; document.getElementById('ind-risp').style.display = 'block'; document.getElementById('c-t').focus(); }
+function X() { sId = null; document.getElementById('ind-risp').style.display = 'none'; }
+function V(id, v) { const p = db.find(x => x.id === id); if(p) { p.voti += v; document.getElementById(`pt-${id}`).innerText = p.voti; } }
+R();
+const f = ['"Siamo fatti di materia stellare." – M. Hack', '"Guardate le stelle." – S. Hawking', '"L\'universo non ha fretta." – Lao Tzu', '"Il cosmo è tutto ciò che è." – C. Sagan', '"Due cose sono infinite: l\'universo e la stupidità." – Einstein', '"Se siamo soli, sarebbe un gran spreco di spazio." – C. Sagan', '"La Terra è solo un minuscolo granello di polvere." – C. Sagan', '"Ognuno di noi è una galassia." – Anonimo'];
+function NC() { document.getElementById('tC').innerText = f[Math.floor(Math.random() * f.length)]; }
+const curiositaMondo = [
+    "Un giorno su Venere dura più di un intero annum su Venere a causa della sua rotazione lentissima.",
+    "Nello spazio c'è una gigantesca nube di alcol fluttuante nella nebulosa Sagittarius B2.",
+    "Un solo cucchiaino da tè di materia di una stella di neutroni peserebbe circa 6 miliardi di tonnellate.",
+    "La luce che vediamo oggi dalle stelle è partita migliaia o milioni di anni fa: guardiamo il passato.",
+    "Su Nettuno e Urano l'altissima pressione atmosferica genera piogge di veri e propri diamanti.",
+    "La galassia di Andromeda si fonderà con la Via Lattea tra circa 4 miliardi di anni."];function impostaCuriositaGiorno() { const el = document.getElementById('testoCuriosita'); if(el) el.innerText = curiositaMondo[new Date().getDate() % curiositaMondo.length]; }impostaCuriositaGiorno();function cP() {let p = parseFloat(document.getElementById('pT').value); if (!p || p <= 0) return;document.getElementById('rS').innerHTML = 🌕 <b>Luna:</b> ${(p * 0.166).toFixed(1)} kg | 🪐 <b>Marte:</b> ${(p * 0.379).toFixed(1)} kg<br>⚡ <b>Giove:</b> ${(p * 2.528).toFixed(1)} kg | 🪐 <b>Saturno:</b> ${(p * 1.065).toFixed(1)} kg;}setInterval(() => { const el = document.getElementById('cV'); if(el) el.innerText = ((new Date().getTime() - new Date("September 5, 1977").getTime()) / 31557600000).toFixed(8) + " anni"; }, 100);const cn = document.querySelector('.counter'); if(cn) { let tg = +cn.getAttribute('data-target'), cur = 0; let it = setInterval(() => { if(cur < tg) { cur += 250; cn.innerText = cur; } else { cn.innerText = tg; clearInterval(it); } }, 20); }
