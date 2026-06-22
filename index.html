@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Astronomia Avanzata</title><style>
+body{background:#020208 radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent) repeat;background-size:300px 300px;color:#fff;margin:0;font-family:sans-serif;overflow-x:hidden;}
+.spazio-sfondo-fisso{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
+.stella-cadente-nuova{position:absolute;top:-100px;width:4px;height:4px;background:#fff;border-radius:50%;animation:caduta 4s linear infinite;box-shadow:0 0 8px #fff;}
+.stella-cadente-nuova::after {content:'';position:absolute;width:80px;height:2px;background:linear-gradient(to left,#00e5ff,transparent);transform:rotate(135deg);transform-origin:top left;}
+.stella-cadente-nuova:nth-child(1){left:5%;animation-duration:3.5s;}
+.stella-cadente-nuova:nth-child(2){left:45%;animation-delay:2s;animation-duration:5s;}
+@keyframes caduta{0%{transform:translate(0,0);opacity:0;}10%{opacity:1;}100%{transform:translate(80vh,80vh);opacity:0;}}
+.pianeta-sfondo{position:absolute;border-radius:50%;opacity:0.25;animation:ruota 25s linear infinite;background-size:200% 100%;}
+.marte-nuovo{top:20%;right:8%;width:55px;height:55px;background:radial-gradient(circle at 30% 30%,#ff4d4d,#990000,#ff4d4d);}
+.nettuno-nuovo{top:75%;left:5%;width:75px;height:75px;background:radial-gradient(circle at 30% 30%,#4da6ff,#003366,#4da6ff);animation-duration:40s;}
+@keyframes ruota{0%{transform:rotate(0deg);background-position:0% 50%;}100%{transform:rotate(360deg);background-position:100% 50%;}}
+section,.box-gadget-centrato{background:rgba(13,27,42,0.85);padding:20px;border-radius:12px;max-width:550px;margin:20px auto;border:1px solid #1b4965;text-align:center;backdrop-filter:blur(5px);}
+h1,h2,h3{color:#00e5ff;}
+input,button{width:85%;padding:10px;margin:5px;border-radius:5px;border:none;background:#0d1b2a;color:#fff;box-sizing:border-box;}
+button{background:#00e5ff;color:#000;font-weight:bold;cursor:pointer;}
+#preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:#020208;z-index:9999;display:flex;justify-content:center;align-items:center;transition:opacity 0.5s ease,visibility 0.5s ease;}
+.solar-system{position:relative;width:160px;height:160px;}
+.sun{position:absolute;top:65px;left:65px;width:30px;height:30px;background:#ffcc00;border-radius:50%;box-shadow:0 0 20px #ff9900;}
+.orbit{position:absolute;border:1px dashed rgba(255,255,255,0.15);border-radius:50%;animation:spin linear infinite;}
+.orbit-1{top:45px;left:45px;width:70px;height:70px;animation-duration:3s;}
+.orbit-2{top:25px;left:25px;width:110px;height:110px;animation-duration:5s;}
+.orbit-3{top:5px;left:5px;width:150px;height:150px;animation-duration:8s;}
+.planet{position:absolute;top:0;left:50%;width:10px;height:10px;border-radius:50%;transform:translateX(-50%);}
+.p1{background:#ff4d4d;}.p2{background:#00e5ff;}.p3{background:#ffcc00;}
+@keyframes spin{100%{transform:rotate(360deg);}}
+.btn-youtube{background:#ff0000;color:#fff;font-size:16px;width:auto;padding:12px 25px;border-radius:30px;box-shadow:0 0 15px rgba(255,0,0,0.4);animation:pulse 2s infinite;text-decoration:none;display:inline-block;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);box-shadow:0 0 25px rgba(255,0,0,0.7);}}
+#reddit-board{max-height:200px;overflow-y:auto;text-align:left;margin:15px auto;width:90%;}
+.reddit-post{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px;margin-bottom:12px;}
+.post-header{font-size:11px;color:#888;margin-bottom:6px;}
+.post-user{color:#ffcc00;font-weight:bold;}
+.post-content{font-size:14px;color:#eee;margin-bottom:10px;}
+.post-actions{display:flex;gap:15px;align-items:center;font-size:12px;}
+.vote-btn{background:none;width:auto;padding:0;margin:0;color:#aaa;font-size:14px;}
+.vote-count{font-weight:bold;color:#00e5ff;min-width:15px;text-align:center;}
+.reply-link{color:#ff007f;cursor:pointer;font-weight:bold;}
+</style></head><body>
+<div id="preloader"><div class="solar-system"><div class="sun"></div><div class="orbit orbit-1"><div class="planet p1"></div></div><div class="orbit orbit-2"><div class="planet p2"></div></div><div class="orbit orbit-3"><div class="planet p3"></div></div></div></div>
+<div class="spazio-sfondo-fisso"><div class="stella-cadente-nuova"></div><div class="stella-cadente-nuova"></div><div class="pianeta-sfondo marte-nuovo"></div><div class="pianeta-sfondo nettuno-nuovo"></div></div>
+<header style="text-align:center;padding:20px 10px;"><h1 style="margin:0;">Astronomia Avanzata</h1><p style="margin:5px 0 20px 0;">L'universo alla portata di tutti</p><a href="https://youtube.com" target="_blank" class="btn-youtube">🔴 ISCRIVITI AL CANALE</a></header>
+<section><h2>Chi siamo</h2><p>Rendiamo l'astronomia accessibile con approfondimenti scientifici dedicati al cosmo.</p><h3 class="counter" data-target="10000">0</h3><p>Appassionati nella Community</p></section>
+<div class="box-gadget-centrato" style="border-color:#ff9900;"><h3 style="color:#ff9900;margin:0;">🚀 r/Astronomia_Avanzata</h3><div id="reddit-board"><div class="reddit-post"><div class="post-header">Inviato da <span class="post-user">u/Sistema_Spaziale</span> • Mod</div><div class="post-content">Benvenuti! Fate domande o rispondete ai dubbi degli altri. Usate le frecce per votare!</div><div class="post-actions"><button class="vote-btn" onclick="vota(this,1)">⬆️</button><span class="vote-count">42</span><button class="vote-btn" onclick="vota(this,-1)">⬇️</button><span class="reply-link" onclick="avviaRisposta('Sistema_Spaziale')">💬 Rispondi</span></div></div></div><div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:8px;"><input type="text" id="chat-nome" placeholder="u/Nome" style="width:30%;display:inline-block;margin-right:2%;"><input type="text" id="chat-testo" placeholder="Scrivi un post o rispondi..." style="width:52%;display:inline-block;"><button onclick="creaPostReddit()" style="width:85%;margin-top:5px;background:#ff9900;">Pubblica su Reddit</button></div></div>
+<div class="box-gadget-centrato"><h3>Quanto pesi nel Sistema Solare? 🚀</h3><input type="number" id="pesoTerraGadget" placeholder="Peso in kg"><button onclick="calcolaPeso()">Calcola</button><div id="risultatoSpazioGadget" style="margin-top:10px;text-align:left;line-height:1.5;"></div></div>
+<section><h2>I Grandi Misteri del Cosmo</h2><p><b>🌌 Espansione:</b> L'universo si espande sempre più velocemente grazie all'Energia Oscura.</p><p><b>🔮 Materia Oscura:</b> Una forza invisibile che tiene unite le galassie e occupa il 27% del cosmo.</p><p><b>💨 Nebulose:</b> Spettacolari nubi di polvere e gas che fanno da culla per la nascita di nuove stelle.</p></section>
+<div class="box-gadget-centrato" onclick="NuovaCitazione()" style="cursor:pointer;border-color:#4da6ff;"><p id="testoCitazione" style="font-style:italic;margin:0;font-size:14px;">"Siamo fatti di materia stellare che brucia." – M. Hack</p><span style="font-size:10px;color:#aaa;margin-top:5px;display:block;">👉 Clicca qui per cambiare citazione</span></div>
+<section id="nasa-apod"><h2>Foto del Giorno NASA</h2><div id="apod-loading-status">Caricamento...</div><div id="apod-content-box" style="display:none;"><img id="apod-img" src="" alt="NASA" style="max-width:100%;border-radius:8px;"><h3 id="apod-title" style="font-size:14px;"></h3></div></section>
+<div class="box-gadget-centrato"><h5>Tempo della Sonda Voyager 1 nello Spazio:</h5><p id="contatoreVoyagerLive" style="font-family:monospace;font-weight:bold;"></p></div>
+<script>
+window.addEventListener('load',()=>{setTimeout(()=>{let p=document.getElementById('preloader');if(p){p.style.opacity='0';p.style.visibility='hidden';setTimeout(()=>p.style.display='none',500);}},1200);});
+function creaPostReddit(){let n=document.getElementById('chat-nome').value.trim()||"Anonimo",t=document.getElementById('chat-testo').value.trim();if(!t)return;let b=document.getElementById('reddit-board'),u=n.startsWith('u/')?n:'u/'+n,p=u.replace('u/','').replace(/['"]/g,'');b.innerHTML+=`<div class="reddit-post"><div class="post-header">Inviato da <span class="post-user">${u}</span></div><div class="post-content">${t}</div><div class="post-actions"><button class="vote-btn" onclick="vota(this,1)">⬆️</button><span class="vote-count">1</span><button class="vote-btn" onclick="vota(this,-1)">⬇️</button><span class="reply-link" onclick="avviaRisposta('${p}')">💬 Rispondi</span></div></div>`;document.getElementById('chat-testo').value="";b.scrollTop=b.scrollHeight;}
+function vota(b,v){let p=b.parentElement,s=p.querySelector('.vote-count');s.innerText=parseInt(s.innerText)+v;b.style.opacity="0.5";b.disabled=true;}
+function avviaRisposta(u){let i=document.getElementById('chat-testo');i.value=`@u/${u} `;i.focus();}
+async function avviaNasa(){try{const res=await fetch('https://nasa.gov'),d=await res.json();if(d.media_type==="image")document.getElementById('apod-img').src=d.url;document.getElementById('apod-title').innerText=d.title;document.getElementById('apod-loading-status').style.display='none';document.getElementById('apod-content-box').style.display='block';}catch(e){document.getElementById('apod-loading-status').innerText="Errore NASA.";}}avviaNasa();
+function calcolaPeso(){let p=parseFloat(document.getElementById('pesoTerraGadget').value);if(!p||p<=0)return;document.getElementById('risultatoSpazioGadget').innerHTML=`🌕 <b>Luna:</b> ${(p*0.166).toFixed(1)} kg | 🪐 <b>Marte:</b> ${(p*0.379).toFixed(1)} kg<br>⚡ <b>Giove:</b> ${(p*2.528).toFixed(1)} kg | 🪐 <b>Saturno:</b> ${(p*1.065).toFixed(1)} kg<br>☄️ <b>Mercurio:</b> ${(p*0.378).toFixed(1)} kg | 🔵 <b>Nettuno:</b> ${(p*1.137).toFixed(1)} kg`;}
+  const frasi=['"Guardate le stelle." – S. Hawking','"L'universo non ha fretta." – Lao Tzu','"Il cosmo è tutto ciò che è." – C. Sagan','"Siamo fatti di materia stellare." – M. Hack','"Due cose sono infinite: l'universo e la stupidità." – A. Einstein','"Se siamo soli, sarebbe un grande spreco di spazio." – A. C. Clarke'];function NuovaCitazione(){document.getElementById('testoCitazione').innerText=frasi[Math.floor(Math.random()frasi.length)];}setInterval(()=>{document.getElementById('contatoreVoyagerLive').innerText=((new Date().getTime()-new Date("September 5, 1977").getTime())/(1000606024*365.25)).toFixed(8)+" anni";},100);const cn=document.querySelector('.counter');let tg=+cn.getAttribute('data-target'),cur=0,it=setInterval(()=>{if(cur<tg){cur+=250;cn.innerText=cur;}else{cn.innerText=tg;clearInterval(it);}},20);
